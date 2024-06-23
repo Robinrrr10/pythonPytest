@@ -1,0 +1,123 @@
+
+Pytest Notes:
+------------
+------------
+
+
+pip install pytest        //This is to install pytest
+
+pytest -h      //This will show all sub commands and its uses
+
+
+Below the naming we should follow for pytest to identify our tests:
+------------------
+
+test file name should start test_ Eg: test_users.py
+or
+test file name should end with _test.py Eg: user_flow_test.py
+
+test method funtion should start with test Eg: test_login_with_valid_credential()
+
+test class should start with Test Eg: class TestLogin:
+
+----------------------
+
+
+Use below command to run the test:
+----------------------------------
+
+pytest
+
+
+
+-------------------
+
+Below command will execute test in specific file:
+-------------------------------------------------
+
+
+pytest testfilenamewithpath.py -v 
+or
+pytest -v testfilenamewithpath.py
+
+
+Eg:
+pytest first_simple_test.py -v
+
+pytest src/tests/first_simple_test.py -v   or pytest src\tests\first_simple_test.py -v
+
+
+
+
+------------------
+
+Use below command to run the test methods which matches with string     (refer file second_pass_and_failed_test.py)
+---
+
+pytest -k givematchingstringhere
+
+Eg:
+pytest -k login
+
+--------------------
+
+Group (refer third_test.py, fourth_test.py and pytest.ini
+-------
+
+To give group name in test use like below
+@pytest.mark.groupnamehere
+
+Eg:
+@pytest.mark.homepage
+def test_for_group_example(self):
+
+Use below command to run the test methods which has groups
+---------
+
+pytest -m groupname
+
+Eg:
+pytest -m homepage
+
+
+if we get any warning when running, add the group name and detail in pytest.ini like below . If file was not there, add the file in root of the folder with nae pytest.ini
+
+[pytest]
+markers = 
+     homepage: Mark a test as home page test
+     aboutpage: Mark a test as about page test
+     other
+     
+----------------
+
+fixture (refer fifth_test.py file)
+-------
+fixture is the method which runs before each test and give the input to the test methods
+
+We can make the fixture using below annotation on a method which returns the values
+@pytest.fixture
+
+Eg:
+@pytest.fixture
+def user_input():
+    return "ram"
+    
+
+In test method we need use the fixture method name to pass that input
+In above, user_input was the fixture method name, in test method we can pass the param as same user_input
+
+
+
+
+-------------------
+
+
+Assertion:
+---------
+
+We can use assert function for asserting
+
+assert 1 == 2
+
+--------------------
+
